@@ -9,7 +9,7 @@ public class User {
     private String email;
     private String token;
 
-    public User(String firstname, String lastname, String login, String email, String token) {
+    public User(String firstname, String lastname, String login, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.login = login;
@@ -18,13 +18,14 @@ public class User {
     }
 
     private void generateToken() {
-        char[] text=new char[50];
+        char[] text=new char[40];
         Random random = new Random();
         for(int i=0;i<40;i++){
             text[i]=(char) (random.nextInt(82)+33);
 
         }
-        token=text.toString();
+        token=String.valueOf(text);
+        System.out.println(token);
     }
 
     public String getFirstname() {
