@@ -37,9 +37,9 @@ public class Login {
     }
 
     @GET
-    @Path("/logout")
+    @Path("/logout/{token}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String logout (@PathParam("token") String token, @PathParam("token") String login) {
+    public String logout (@PathParam("token") String token ) {
         MySQL mySQL= new MySQL();
         mySQL.logout(token);
         return "{}";
@@ -50,19 +50,24 @@ public class Login {
     @POST
     @Path("/registration")
     @Produces(MediaType.APPLICATION_JSON)
-    public String createNewUser(Registration registration) {
-   MySQL mySQL= new MySQL();
-   boolean exist=mySQL.checkIfEmailOrLoginExist(registration.login.trim(), registration.email.trim());
-   if (exist){
+    public String createNewUser(sk.akademiasovy.tipos.server.Registration registration) {
+        MySQL mySQL=new MySQL();
+        boolean exist=mySQL.checkIfEmailOrLoginExist(registration.login.trim(), registration.email.trim());
+        if(exist){
+            // duplicita - no reg, return error message
+            return "{\"error\":\"User or email address already exists !\"}";
 
-      return "{\"error\":\"User or email address already exists!\"}";
-   }else{
-       System.out.println("do registration");
-   }
+        }
+        else{
+            //  to do registration
+            System.out.println("go on with registration");
 
-    return "{}";
-
+        }
+        return "{}";
     }
+
+
+
 }
 
 
