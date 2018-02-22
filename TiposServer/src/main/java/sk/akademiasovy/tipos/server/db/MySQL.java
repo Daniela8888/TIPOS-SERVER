@@ -42,18 +42,42 @@ public class MySQL {
         }
         return null;
     }
-    public void logout( String token){
-        try{
+
+    public void logout(String token) {
+        try {
             Class.forName(driver).newInstance();
             conn = DriverManager.getConnection(url, this.username, this.password);
 
-            String query ="UPDATE tokens SET token=\"\" where token like ?";
+            String query = "UPDATE tokens SET token=\"\" where token like ?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1,token);
+            ps.setString(1, token);
             ps.executeUpdate();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public boolean checkIfEmailOrLoginExist(String login, String email) {
+        try {
+            Class.forName(driver).newInstance();
+            conn = DriverManager.getConnection(url, this.username, this.password);
+
+            String query = "UPDATE count(*) as num FROM users where login like ! OR email like !";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, login);
+            ps.setString(2, email);
+            ResultSet rs = ps.executeQuery();
+
+            rs.next();
+            if (rs.getInt("num") == 0)
+                return false;
+            else
+                return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    return true;
+    }
 }
+
