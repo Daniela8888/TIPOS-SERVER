@@ -15,9 +15,9 @@ public class Ticket{
     @JsonProperty("bet5")
     public int bet5;
     @JsonProperty("token")
-    public int token;
+    public String token;
     @JsonProperty("login")
-    public int login;
+    public String login;
 
 
 
