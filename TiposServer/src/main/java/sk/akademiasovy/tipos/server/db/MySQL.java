@@ -1,14 +1,16 @@
 package sk.akademiasovy.tipos.server.db;
 
+import sk.akademiasovy.tipos.server.Draw_Number;
 import sk.akademiasovy.tipos.server.Registration;
-import sk.akademiasovy.tipos.server.User;
 import sk.akademiasovy.tipos.server.Ticket;
+import sk.akademiasovy.tipos.server.User;
 
 import javax.xml.crypto.dsig.spec.ExcC14NParameterSpec;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 
 public class MySQL {
 
@@ -173,7 +175,32 @@ public class MySQL {
             e.printStackTrace();
             }
             }
+
+    public Draw_Number getDrawNumbers(int id) {
+        try {
+            Class.forName(driver).newInstance();
+            conn = DriverManager.getConnection(url, this.username, this.password);
+
+            String query = "SELECT * from draw_history where id = ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Draw_Number dn = new Draw_Number(rs.getInt("ball1"),rs.getInt("ball2"),rs.getInt("ball3"),rs.getInt("ball4"),
+                        rs.getInt("ball5"), null);
+                return dn;
             }
+
+
+            else return null;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    }
 
 
 
