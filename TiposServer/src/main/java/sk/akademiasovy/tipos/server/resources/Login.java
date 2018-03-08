@@ -7,6 +7,7 @@ import javax.print.attribute.standard.Media;
 import javax.servlet.Registration;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import sk.akademiasovy.tipos.server.Credentials;
@@ -54,16 +55,15 @@ public class Login {
         MySQL mySQL=new MySQL();
         boolean exist=mySQL.checkIfEmailOrLoginExist(registration.login.trim(), registration.email.trim());
         if(exist){
-            // duplicita - no reg, return error message
             return "{\"error\":\"User or email address already exists !\"}";
 
         }
         else{
-            //  to do registration
             System.out.println("go on with registration");
+            mySQL.insertNewUserIntoDb(registration);
 
         }
-        return "{}";
+        return Response.status(201).build();
     }
 
 

@@ -10,8 +10,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+
+@Path("/draw/{id}")
 public class Draws {
-    @Path("/draw/{id}")
+
 
 
         @GET

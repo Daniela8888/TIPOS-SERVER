@@ -21,7 +21,7 @@ public class User {
         char[] text=new char[40];
         Random random = new Random();
         for(int i=0;i<40;i++){
-            text[i]=(char) (random.nextInt(82)+33);
+            text[i]=(char) (random.nextInt(26)+'A');
 
         }
         token=String.valueOf(text);
