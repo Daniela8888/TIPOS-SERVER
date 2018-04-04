@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="sample.Controller">
    <children>
       <Label layoutX="182.0" layoutY="115.0" prefHeight="28.0" prefWidth="236.0" text="TIPOS-Admin portal" textFill="#5399db">
          <font>
@@ -24,8 +24,9 @@
             <Font name="Corbel" size="12.0" />
          </font>
       </Label>
-      <TextField layoutX="226.0" layoutY="179.0" />
-      <PasswordField layoutX="226.0" layoutY="213.0" />
-      <Button defaultButton="true" layoutX="398.0" layoutY="201.0" mnemonicParsing="false" text="Log in" textFill="WHITE" />
+      <TextField fx:id="txtLogin" layoutX="226.0" layoutY="179.0" promptText="Type here" />
+      <PasswordField fx:id="txtPassword" layoutX="226.0" layoutY="213.0" promptText="Type here" />
+      <Button fx:id="btnLogin" defaultButton="true" layoutX="398.0" layoutY="201.0" mnemonicParsing="false" onAction="#clickLogin" text="Log in" textFill="WHITE" />
+      <Label layoutX="252.0" layoutY="250.0" prefHeight="17.0" prefWidth="80.0" textFill="#f20909" />
    </children>
 </Pane>
